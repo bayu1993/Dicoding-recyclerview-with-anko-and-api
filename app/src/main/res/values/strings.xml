@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Dicoding Recyclerview Kotlin with api</string>
+    <string-array name="league_array">
+        <item>English Premier League</item>
+        <item>English League Championship</item>
+        <item>German Bundesliga</item>
+        <item>Italian Serie A</item>
+        <item>French Ligue 1</item>
+        <item>Spanish La Liga</item>
+    </string-array>
+</resources>
