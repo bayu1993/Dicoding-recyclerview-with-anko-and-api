@@ -1,4 +1,4 @@
-package io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.repository
+package io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.repository
 
 import java.net.URL
 

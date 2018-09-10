@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Dicoding Recyclerview Kotlin with api</string>
+    <string name="teams">Teams</string>
+    <string name="favorites">Favorites</string>
     <string-array name="league_array">
         <item>English Premier League</item>
         <item>English League Championship</item>

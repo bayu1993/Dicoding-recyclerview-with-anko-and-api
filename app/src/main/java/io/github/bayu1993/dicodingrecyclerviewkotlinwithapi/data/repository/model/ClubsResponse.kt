@@ -1,4 +1,4 @@
-package io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.repository.model
+package io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.repository.model
 
 import com.google.gson.annotations.SerializedName
 

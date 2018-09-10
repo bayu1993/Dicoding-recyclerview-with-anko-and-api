@@ -8,17 +8,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.R
-import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.repository.model.Club
+import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.repository.model.Club
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 /**
  * Created by Bayu teguh pamuji on 9/1/18.
  * email : bayuteguhpamuji@gmail.com.
  */
-class ClubAdapter(private val clubs:List<Club>): RecyclerView.Adapter<ClubAdapter.ViewHolder>() {
-    class UIClub : AnkoComponent<ViewGroup>{
+class ClubAdapter(private val clubs: List<Club>, private val listener: (Club) -> Unit) : RecyclerView.Adapter<ClubAdapter.ViewHolder>() {
+    class UIClub : AnkoComponent<ViewGroup> {
         override fun createView(ui: AnkoContext<ViewGroup>): View {
-            return with(ui){
+            return with(ui) {
                 linearLayout {
                     lparams(matchParent, wrapContent)
                     padding = dip(16)
@@ -26,11 +27,11 @@ class ClubAdapter(private val clubs:List<Club>): RecyclerView.Adapter<ClubAdapte
 
                     imageView {
                         id = R.id.club_badge
-                    }.lparams(50,50)
+                    }.lparams(50, 50)
                     textView {
                         id = R.id.tv_name
                         textSize = 16f
-                    }.lparams{
+                    }.lparams {
                         margin = dip(15)
                     }
                 }
@@ -38,8 +39,9 @@ class ClubAdapter(private val clubs:List<Club>): RecyclerView.Adapter<ClubAdapte
         }
 
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClubAdapter.ViewHolder {
-        return ViewHolder(UIClub().createView(AnkoContext.Companion.create(parent.context,parent)))
+        return ViewHolder(UIClub().createView(AnkoContext.create(parent.context, parent)))
     }
 
     override fun getItemCount(): Int {
@@ -47,15 +49,18 @@ class ClubAdapter(private val clubs:List<Club>): RecyclerView.Adapter<ClubAdapte
     }
 
     override fun onBindViewHolder(holder: ClubAdapter.ViewHolder, position: Int) {
-        holder.bind(clubs[position])
+        holder.bind(clubs[position], listener)
     }
 
-    inner class ViewHolder(view:View):RecyclerView.ViewHolder(view){
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val clubBadge = view.find<ImageView>(R.id.club_badge)
         private val clubName = view.find<TextView>(R.id.tv_name)
-        fun bind(club:Club){
+        fun bind(club: Club, listener: (Club) -> Unit) {
             Picasso.get().load(club.badgeClub).into(clubBadge)
             clubName.text = club.nameClub
+            itemView.onClick {
+                listener(club)
+            }
         }
     }
 }
