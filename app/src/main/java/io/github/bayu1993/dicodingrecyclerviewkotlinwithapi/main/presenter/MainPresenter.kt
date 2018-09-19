@@ -1,12 +1,15 @@
 package io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.main.presenter
 
 import com.google.gson.Gson
-import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.main.view.MainView
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.repository.ApiRepository
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.repository.TheSportDBAPI
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.repository.model.ClubsResponse
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.main.view.MainView
+import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.utils.CoroutineContextProvider
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
+import kotlin.coroutines.experimental.CoroutineContext
 
 /**
  * Created by Bayu teguh pamuji on 9/1/18.
@@ -15,16 +18,15 @@ import org.jetbrains.anko.uiThread
 
 class MainPresenter(private val view: MainView,
                     private val apiRepository: ApiRepository,
-                    private val gson: Gson) {
+                    private val gson: Gson, private val context: CoroutineContextProvider = CoroutineContextProvider()) {
     fun getClubs(league: String) {
         //view.showLoading()
-        doAsync {
-            val data = gson.fromJson(apiRepository.doRequest(TheSportDBAPI.getTeams(league)),
-                    ClubsResponse::class.java)
-            uiThread {
-                //view.hideLoading()
-                view.showClubs(data.clubs)
+        async(context.main) {
+            val data = bg {
+                gson.fromJson(apiRepository.doRequest(TheSportDBAPI.getTeams(league)),
+                        ClubsResponse::class.java)
             }
+            view.showClubs(data.await().clubs)
         }
     }
 }

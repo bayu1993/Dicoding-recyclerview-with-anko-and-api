@@ -14,7 +14,9 @@ object TheSportDBAPI{
                 "/search_all_teams.php?l=" + league
     }
     fun getClubDetail(teamId:String?):String{
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
+                "/lookupteam.php?id=" + teamId
+        /*return Uri.parse(BuildConfig.BASE_URL).buildUpon()
                 .appendPath("api")
                 .appendPath("v1")
                 .appendPath("json")
@@ -22,6 +24,6 @@ object TheSportDBAPI{
                 .appendPath("lookupteam.php")
                 .appendQueryParameter("id",teamId)
                 .build()
-                .toString()
+                .toString()*/
     }
 }

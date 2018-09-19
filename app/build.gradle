@@ -56,4 +56,13 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+
+    implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
+    //unit test
+    testImplementation 'org.mockito:mockito-core:2.22.0'
+    testImplementation "org.mockito:mockito-inline:2.22.0"
+    //instrument test
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
