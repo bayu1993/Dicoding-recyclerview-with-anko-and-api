@@ -3,6 +3,7 @@ package io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.main.ui.activity
 import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Color
 import android.os.Bundle
+import android.support.design.R.id.home
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
@@ -16,6 +17,7 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.R
+import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.R.id.add_to_favorite
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.local.database
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.local.model.ClubFavorite
 import io.github.bayu1993.dicodingrecyclerviewkotlinwithapi.data.repository.ApiRepository
@@ -146,11 +148,11 @@ class DetailClubActivity : AppCompatActivity(), ClubDetailView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            android.R.id.home -> {
+            home -> {
                 finish()
                 true
             }
-            R.id.add_to_favorite -> {
+            add_to_favorite -> {
                 if (isFavorite) removeFromFavorite() else addToFavorite()
                 isFavorite = !isFavorite
                 setFavorite()

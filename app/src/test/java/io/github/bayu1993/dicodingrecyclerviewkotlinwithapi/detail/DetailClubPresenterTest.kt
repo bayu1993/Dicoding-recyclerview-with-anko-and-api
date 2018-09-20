@@ -41,7 +41,7 @@ class DetailClubPresenterTest {
     fun getClubDetailTest() {
         val clubs: MutableList<Club> = mutableListOf()
         val response = ClubsResponse(clubs)
-        val id = "1234"
+        val id = "4328"
 
         Mockito.`when`(gson.fromJson(apiRepository.doRequest(TheSportDBAPI.getClubDetail(id)),
                 ClubsResponse::class.java)).thenReturn(response)

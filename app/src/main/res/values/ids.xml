@@ -2,7 +2,9 @@
 <resources>
     <item name="club_badge" type="id" />
     <item name="tv_name" type="id" />
-
+    <item name="bottom_navigation" type="id"/>
     <item name="img_club_fav" type="id" />
     <item name="tv_clubname_fav" type="id" />
+    <item name="listClubs" type="id" />
+    <item name="spinner" type="id" />
 </resources>
